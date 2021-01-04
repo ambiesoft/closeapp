@@ -71,5 +71,21 @@
     <ClInclude Include="..\..\lsMisc\OpenCommon.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="closeappw.rc">
+      <Filter>3 Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>3 Resource Files</Filter>
+    </Image>
+    <Image Include="icon_main.ico">
+      <Filter>3 Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
