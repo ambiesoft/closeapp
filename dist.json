@@ -16,7 +16,8 @@
         "closeappw.exe",
         "closeappw.pdb",
         "history.txt",
-        "README.md"
+        "README.md",
+        "LICENSE"
     ],
     "TotalFileCount": "exact",
     "archivedir": "C:\\Linkout\\",
