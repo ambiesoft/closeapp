@@ -118,7 +118,7 @@ void RemoveRootExplorer(Data& data)
 int wmain_common(
 	function<void(wstring)> outfunc,
 	function<void(wstring)> errorfunc,
-	function<set<wstring>()> getinputfunc = nullptr)
+	function<set<wstring>()> getinputfunc)
 {
 	CCommandLineParser parser;
 
@@ -186,19 +186,6 @@ int wmain_common(
 		return 1;
 	}
 
-	EnumWindows(enumproc, (LPARAM)&data);
-
-	if (data.found.empty())
-	{
-		errorfunc(I18N(L"Windows not found"));
-		return 1;
-	}
-
-	if (bCloseExplorerWindows)
-	{
-		RemoveRootExplorer(data);
-	}
-
 	CLOSE_METHD cm;
 	if (closemethod.empty())
 		cm = CLOSE_METHD::kClose_WM_CLOSE;
@@ -214,6 +201,18 @@ int wmain_common(
 		return 1;
 	}
 
+	EnumWindows(enumproc, (LPARAM)&data);
+
+	if (data.found.empty())
+	{
+		errorfunc(I18N(L"Windows not found"));
+		return 1;
+	}
+
+	if (bCloseExplorerWindows)
+	{
+		RemoveRootExplorer(data);
+	}
 
 	for (HWND h : data.found) 
 	{
@@ -235,7 +234,6 @@ int wmain_common(
 			break;
 		}
 	}
-	// ClipboardHistory.exe
 
 	if (bRestart)
 	{
