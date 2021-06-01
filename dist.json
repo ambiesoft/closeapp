@@ -25,5 +25,5 @@
     "ShouldNotBeFiles": [],
     "ShouldBeOneOfThem": [],
     "obtainverfrom": "history.txt",
-    "obtainverregex": "\\d+\\.\\d+\\.d+\\"
+    "obtainverregex": "\\d+\\.\\d+\\.\\d+"
 }
