@@ -1,0 +1,29 @@
+{
+    "name": "closeapp",
+    "solution": "closeapp.sln",
+    "targetproject": "zzzDist",
+    "configuration": "Release",
+    "targets": [
+        {
+            "setoutdirforbuild": false,
+            "outdir": "Release\\v142\\closeapp\\",
+            "platform": "Win32"
+        }
+    ],
+    "ShouldBeFiles": [
+        "closeapp.exe",
+        "closeapp.pdb",
+        "closeappw.exe",
+        "closeappw.pdb",
+        "history.txt",
+        "README.md"
+    ],
+    "TotalFileCount": "exact",
+    "archivedir": "C:\\Linkout\\",
+    "remotedir": "http://ambiesoft.mooo.com/ffdav/uploads/closeapp/",
+    "remotesha1": "http://ambiesoft.mooo.com/ffdav/uploads/getSha1.php?file=closeapp/{}",
+    "ShouldNotBeFiles": [],
+    "ShouldBeOneOfThem": [],
+    "obtainverfrom": "history.txt",
+    "obtainverregex": "\\d+\\.\\d+\\.d+\\"
+}

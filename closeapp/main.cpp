@@ -1,5 +1,5 @@
 #include "stdafx.h"
-
+#include <iostream>
 #include "closeapp_common.h"
 
 using namespace std;
