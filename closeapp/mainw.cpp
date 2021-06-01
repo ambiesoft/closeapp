@@ -6,11 +6,13 @@
 #include "../../lsMisc/I18N.h"
 #include "../../lsMisc/UTF16toUTF8.h"
 #include "../../profile/cpp/Profile/include/ambiesoft.profile.h"
+#include "../../lsMisc/HighDPI.h"
 
 #include "resource.h"
 
 #include "closeapp_common.h"
 
+constexpr wchar_t APPNAME[] = L"closeappw";
 HINSTANCE ghInst;
 
 using namespace std;
@@ -159,9 +161,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 	UNREFERENCED_PARAMETER(nCmdShow);
-
+	
+	InitHighDPISupport();
 	ghInst = hInstance;
-	return wmain_common(outfunc, errorfunc, getinput);
+	return wmain_common(APPNAME, outfunc, errorfunc, getinput);
 }
 
 #pragma comment(linker,"\"/manifestdependency:type='win32' \

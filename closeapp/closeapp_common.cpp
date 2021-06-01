@@ -5,6 +5,7 @@
 
 #include <functional>
 #include <set>
+#include <iostream>
 
 #include "../../lsMisc/GetFileNameFromHwnd.h"
 #include "../../lsMisc/CommandLineParser.h"
@@ -12,7 +13,7 @@
 #include "../../lsMisc/OpenCommon.h"
 #include "../../lsMisc/stdosd/stdosd.h"
 
-#include <iostream>
+#include "closeapp_common.h"
 
 #define I18N(s) (s)
 
@@ -116,6 +117,7 @@ void RemoveRootExplorer(Data& data)
 }
 
 int wmain_common(
+	const std::wstring& appname,
 	function<void(wstring)> outfunc,
 	function<void(wstring)> errorfunc,
 	function<set<wstring>()> getinputfunc)
@@ -137,12 +139,20 @@ int wmain_common(
 
 	bool bVerbose = false;
 	parser.AddOption(L"-v", 0, &bVerbose, ArgEncodingFlags_Default, I18N(L"Show verbose output"));
-	
+
+	bool bVersion = false;
+	parser.AddOptionRange({ L"-V", L"--version", }, 0, &bVersion, ArgEncodingFlags_Default, I18N(L"Show version"));
+
 	bool bCloseExplorerWindows = false;
 	parser.AddOption(L"-ce", 0, &bCloseExplorerWindows, ArgEncodingFlags_Default, I18N(L"Close Explorer Windows"));
 
 	parser.Parse();
 
+	if (bVersion)
+	{
+		outfunc(stdFormat(L"%s v%s", appname.c_str(), APPVERSION).c_str());
+		return 0;
+	}
 	if (bHelp)
 	{
 		// TODO: Add version number

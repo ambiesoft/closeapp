@@ -14,5 +14,5 @@ void errorfunc(wstring str)
 }
 int wmain(int argc, const wchar_t* argv[])
 {
-	return wmain_common(outfunc, errorfunc);
+	return wmain_common(L"closeapp", outfunc, errorfunc);
 }
