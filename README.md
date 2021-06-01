@@ -9,3 +9,8 @@
 ```
 >closeapp -ce
 ```
+
+## close multiple apps
+```
+>closeapp wordpad.exe notepad.exe
+```
