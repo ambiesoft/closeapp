@@ -28,6 +28,18 @@ void errorfunc(wstring str)
 	MessageBox(NULL, str.c_str(), APPNAME, MB_ICONWARNING);
 }
 
+void AppendExecutable(HWND hCombo, const wstring& fullpath)
+{
+	wstring file = stdGetFileName(fullpath);
+
+	wstring newString;
+	stdGetWindowText(hCombo, &newString);
+	if (!newString.empty())
+		newString += L";";
+	newString += file;
+	stdSetWindowText(hCombo, newString);
+}
+
 wchar_t buff[512];
 INT_PTR CALLBACK DialgGetInput(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -80,6 +92,21 @@ INT_PTR CALLBACK DialgGetInput(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 	case WM_COMMAND:
 		switch (wParam)
 		{
+			case IDC_BUTTON_BROWSEAPP:
+			{
+				CGetOpenFileFilter filter;
+				filter.AddFilter(L"fillll", L"*.aaa", true);
+				wstring fullpath;
+				if (GetOpenFile(ghInst, hWnd,
+					filter,// GETFILEFILTER::APP,
+					nullptr,
+					I18N(L"Choose Executable"),
+					&fullpath) && !fullpath.empty())
+				{
+					AppendExecutable(shCombo, fullpath);
+				}
+			}
+			break;
 			case IDOK:
 			{
 				// save ini
