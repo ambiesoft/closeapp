@@ -7,6 +7,7 @@
 #include "../../lsMisc/UTF16toUTF8.h"
 #include "../../profile/cpp/Profile/include/ambiesoft.profile.h"
 #include "../../lsMisc/HighDPI.h"
+#include "../../lsMisc/GetOpenFile.h"
 
 #include "resource.h"
 
@@ -40,7 +41,6 @@ void AppendExecutable(HWND hCombo, const wstring& fullpath)
 	stdSetWindowText(hCombo, newString);
 }
 
-wchar_t buff[512];
 INT_PTR CALLBACK DialgGetInput(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	constexpr char SECTION_SETTING[] = "Settings";
@@ -95,7 +95,8 @@ INT_PTR CALLBACK DialgGetInput(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 			case IDC_BUTTON_BROWSEAPP:
 			{
 				CGetOpenFileFilter filter;
-				filter.AddFilter(L"fillll", L"*.aaa", true);
+				filter.AddFilter(I18N(L"Application"), L"*.exe;*.com", true);
+				filter.AddFilter(I18N(L"All Files"), L"*.*", true);
 				wstring fullpath;
 				if (GetOpenFile(ghInst, hWnd,
 					filter,// GETFILEFILTER::APP,
@@ -114,9 +115,11 @@ INT_PTR CALLBACK DialgGetInput(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 				vector<wstring> items;
 
 				// first set current
-				GetWindowText(shCombo, buff, _countof(buff));
-				spRet->insert(buff);
-				items.emplace_back(buff);
+				wstring strCombo;
+				stdGetWindowText(shCombo, &strCombo);
+				for(auto&& exe : stdSplitString(strCombo, L";"))
+					spRet->insert(exe);
+				items.emplace_back(strCombo);
 
 				for (int i = 0; i < itemCount; ++i)
 				{

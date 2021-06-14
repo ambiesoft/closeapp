@@ -87,6 +87,7 @@
     <ClCompile Include="..\..\lsMisc\CommandLineParser.cpp" />
     <ClCompile Include="..\..\lsMisc\CSendKeys\SendKeys.cpp" />
     <ClCompile Include="..\..\lsMisc\GetFileNameFromHwnd.cpp" />
+    <ClCompile Include="..\..\lsMisc\GetOpenFile.cpp" />
     <ClCompile Include="..\..\lsMisc\HighDPI.cpp" />
     <ClCompile Include="..\..\lsMisc\I18N.cpp" />
     <ClCompile Include="..\..\lsMisc\OpenCommon.cpp" />
@@ -102,6 +103,7 @@
     <ClInclude Include="..\..\lsMisc\CommandLineParser.h" />
     <ClInclude Include="..\..\lsMisc\CSendKeys\SendKeys.h" />
     <ClInclude Include="..\..\lsMisc\GetFileNameFromHwnd.h" />
+    <ClInclude Include="..\..\lsMisc\GetOpenFile.h" />
     <ClInclude Include="..\..\lsMisc\HighDPI.h" />
     <ClInclude Include="..\..\lsMisc\I18N.h" />
     <ClInclude Include="..\..\lsMisc\OpenCommon.h" />
