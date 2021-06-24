@@ -98,7 +98,7 @@ INT_PTR CALLBACK DialgGetInput(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 				filter.AddFilter(I18N(L"Application"), L"*.exe;*.com", true);
 				filter.AddFilter(I18N(L"All Files"), L"*.*", true);
 				wstring fullpath;
-				if (GetOpenFile(ghInst, hWnd,
+				if (GetOpenFile(hWnd,
 					filter,// GETFILEFILTER::APP,
 					nullptr,
 					I18N(L"Choose Executable"),
