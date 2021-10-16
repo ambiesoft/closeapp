@@ -1,4 +1,7 @@
-﻿2021/06/14 v1.0.4
+﻿2021/10/16 v1.0.5
+Set timeout for SendMessage
+
+2021/06/14 v1.0.4
 Add 'Browse Application' button on the dialogbox
 
 2021/06/01 v1.0.3

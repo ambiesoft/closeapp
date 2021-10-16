@@ -4,8 +4,6 @@
 #include <functional>
 #include <set>
 
-constexpr wchar_t APPVERSION[] = L"1.0.4";
-
 int wmain_common(
 	const std::wstring& appname,
 	std::function<void(std::wstring)> outfunc,

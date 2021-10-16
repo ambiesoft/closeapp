@@ -57,6 +57,9 @@
     <ClCompile Include="..\..\lsMisc\GetOpenFile.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\lsMisc\GetVersionString.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="closeapp_common.h">
@@ -102,6 +105,9 @@
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\lsMisc\GetOpenFile.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\GetVersionString.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>

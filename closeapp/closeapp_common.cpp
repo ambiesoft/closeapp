@@ -11,6 +11,7 @@
 #include "../../lsMisc/CommandLineParser.h"
 #include "../../lsMisc/CSendKeys/SendKeys.h"
 #include "../../lsMisc/OpenCommon.h"
+#include "../../lsMisc/GetVersionString.h"
 #include "../../lsMisc/stdosd/stdosd.h"
 
 #include "closeapp_common.h"
@@ -78,8 +79,15 @@ bool AppActivate(HWND wnd)
 		return false;
 	if (!AllowSetForegroundWindow(pid))
 		return false;
-	::SendMessage(wnd, WM_SYSCOMMAND, SC_HOTKEY, (LPARAM)wnd);
-	::SendMessage(wnd, WM_SYSCOMMAND, SC_RESTORE, (LPARAM)wnd);
+
+	constexpr UINT wait = 1000;
+	DWORD result;
+	if (!::SendMessageTimeout(wnd, WM_SYSCOMMAND, SC_HOTKEY, (LPARAM)wnd, SMTO_NORMAL, wait, &result))
+		return false;
+
+	if (!::SendMessageTimeout(wnd, WM_SYSCOMMAND, SC_RESTORE, (LPARAM)wnd, SMTO_NORMAL, wait, &result))
+		return false;
+		
 
 	for (int i = 0; i < 10; ++i)
 	{
@@ -122,7 +130,7 @@ int wmain_common(
 	function<void(wstring)> errorfunc,
 	function<set<wstring>()> getinputfunc)
 {
-	CCommandLineParser parser;
+	CCommandLineParser parser(I18N(L"Closes Application"), appname);
 
 	wstring closemethod;
 	parser.AddOption(L"-m", 1, &closemethod, ArgEncodingFlags::ArgEncodingFlags_Default,
@@ -150,7 +158,7 @@ int wmain_common(
 
 	if (bVersion)
 	{
-		outfunc(stdFormat(L"%s v%s", appname.c_str(), APPVERSION).c_str());
+		outfunc(stdFormat(L"%s v%s", appname.c_str(), GetVersionString(nullptr, 3).c_str()).c_str());
 		return 0;
 	}
 	if (bHelp)
@@ -224,15 +232,17 @@ int wmain_common(
 		RemoveRootExplorer(data);
 	}
 
+	constexpr UINT wait = 5000;
+	DWORD result;
 	for (HWND h : data.found) 
 	{
 		switch (cm)
 		{
 		case CLOSE_METHD::kClose_WM_CLOSE:
-			SendMessage(h, WM_CLOSE, 0, 0);
+			SendMessageTimeout(h, WM_CLOSE, 0, 0, SMTO_NORMAL, wait, &result);
 			break;
 		case CLOSE_METHD::kClose_SC_CLOSE:
-			SendMessage(h, WM_SYSCOMMAND, SC_CLOSE, 0);
+			SendMessageTimeout(h, WM_SYSCOMMAND, SC_CLOSE, 0, SMTO_NORMAL, wait, &result);
 			break;
 		case CLOSE_METHD::kClose_AltF4:
 			if (AppActivate(h))

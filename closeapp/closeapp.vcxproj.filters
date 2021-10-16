@@ -42,6 +42,12 @@
     <ClInclude Include="..\..\lsMisc\OpenCommon.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\GetVersionString.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\lsMisc\GetFileNameFromHwnd.cpp">
@@ -77,5 +83,13 @@
     <ClCompile Include="..\..\lsMisc\OpenCommon.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\lsMisc\GetVersionString.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="closeapp.rc">
+      <Filter>3 Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
