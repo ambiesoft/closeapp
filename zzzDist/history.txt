@@ -1,4 +1,7 @@
-﻿2021/10/16 v1.0.5
+﻿2023/03/29 v2.0.1
+Migrated to VS2022
+
+2021/10/16 v1.0.5
 Set timeout for SendMessage
 
 2021/06/14 v1.0.4

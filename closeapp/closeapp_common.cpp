@@ -136,7 +136,7 @@ int wmain_common(
 	parser.AddOption(L"-m", 1, &closemethod, ArgEncodingFlags::ArgEncodingFlags_Default,
 		I18N(L"Close method, one of 'wm_close', 'sc_close', 'alt-f4'"));
 
-	COption mainArgs(L"", ArgCount::ArgCount_Infinite, ArgEncodingFlags_Default, L"Target executables");
+	COption mainArgs(L"", ArgCount::ArgCount_ZeroToInfinite, ArgEncodingFlags_Default, L"Target executables");
 	parser.AddOption(&mainArgs);
 
 	bool bRestart = false;
