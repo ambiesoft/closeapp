@@ -6,7 +6,7 @@
     "targets": [
         {
             "setoutdirforbuild": false,
-            "outdir": "Release\\v142\\closeapp\\",
+            "outdir": "Release\\v143\\closeapp\\",
             "platform": "Win32"
         }
     ],
@@ -21,8 +21,8 @@
     ],
     "TotalFileCount": "exact",
     "archivedir": "C:\\Linkout\\",
-    "remotedir": "http://ambiesoft.mooo.com/ffdav/uploads/closeapp/",
-    "remotesha1": "http://ambiesoft.mooo.com/ffdav/uploads/getSha1.php?file=closeapp/{}",
+    "remotedir": "https://ambiesoft.com/ffdav/uploads/closeapp/",
+    "remotesha1": "https://ambiesoft.com/ffdav/uploads/getSha1.php?file=closeapp/{}",
     "ShouldNotBeFiles": [],
     "ShouldBeOneOfThem": [],
     "obtainverfrom": "history.txt",
