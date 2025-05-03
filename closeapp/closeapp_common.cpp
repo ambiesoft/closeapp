@@ -11,7 +11,7 @@
 #include "../../lsMisc/CommandLineParser.h"
 #include "../../lsMisc/CSendKeys/SendKeys.h"
 #include "../../lsMisc/OpenCommon.h"
-#include "../../lsMisc/GetVersionString.h"
+#include "../../lsMisc/GetVersionStringFromResource.h"
 #include "../../lsMisc/stdosd/stdosd.h"
 
 #include "closeapp_common.h"
@@ -133,32 +133,32 @@ int wmain_common(
 	CCommandLineParser parser(I18N(L"Closes Application"), appname);
 
 	wstring closemethod;
-	parser.AddOption(L"-m", 1, &closemethod, ArgEncodingFlags::ArgEncodingFlags_Default,
+	parser.AddOption({ L"-m" }, ArgCount::ArgCount_One, &closemethod, ArgEncodingFlags::ArgEncodingFlags_Default,
 		I18N(L"Close method, one of 'wm_close', 'sc_close', 'alt-f4'"));
 
-	COption mainArgs(L"", ArgCount::ArgCount_ZeroToInfinite, ArgEncodingFlags_Default, L"Target executables");
+	COption mainArgs({ L"" }, ArgCount::ArgCount_ZeroToInfinite, ArgEncodingFlags_Default, L"Target executables");
 	parser.AddOption(&mainArgs);
 
 	bool bRestart = false;
-	parser.AddOption(L"-r", 0, &bRestart, ArgEncodingFlags_Default, I18N(L"Restart application"));
+	parser.AddOption({ L"-r" }, ArgCount::ArgCount_Zero, &bRestart, ArgEncodingFlags_Default, I18N(L"Restart application"));
 
 	bool bHelp = false;
-	parser.AddOptionRange({ L"-h", L"/?" }, 0, &bHelp, ArgEncodingFlags_Default, I18N(L"Show help"));
+	parser.AddOption({ L"-h", L"/?" }, ArgCount::ArgCount_Zero, &bHelp, ArgEncodingFlags_Default, I18N(L"Show help"));
 
 	bool bVerbose = false;
-	parser.AddOption(L"-v", 0, &bVerbose, ArgEncodingFlags_Default, I18N(L"Show verbose output"));
+	parser.AddOption({ L"-v" }, ArgCount::ArgCount_Zero, &bVerbose, ArgEncodingFlags_Default, I18N(L"Show verbose output"));
 
 	bool bVersion = false;
-	parser.AddOptionRange({ L"-V", L"--version", }, 0, &bVersion, ArgEncodingFlags_Default, I18N(L"Show version"));
+	parser.AddOption({ L"-V", L"--version", }, ArgCount::ArgCount_Zero, &bVersion, ArgEncodingFlags_Default, I18N(L"Show version"));
 
 	bool bCloseExplorerWindows = false;
-	parser.AddOption(L"-ce", 0, &bCloseExplorerWindows, ArgEncodingFlags_Default, I18N(L"Close Explorer Windows"));
+	parser.AddOption({ L"-ce" }, ArgCount::ArgCount_Zero, &bCloseExplorerWindows, ArgEncodingFlags_Default, I18N(L"Close Explorer Windows"));
 
 	parser.Parse();
 
 	if (bVersion)
 	{
-		outfunc(stdFormat(L"%s v%s", appname.c_str(), GetVersionString(nullptr, 3).c_str()).c_str());
+		outfunc(stdFormat(L"%s v%s", appname.c_str(), GetVersionStringFromResource(nullptr, 3).c_str()).c_str());
 		return 0;
 	}
 	if (bHelp)

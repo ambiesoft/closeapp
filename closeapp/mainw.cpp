@@ -60,7 +60,7 @@ INT_PTR CALLBACK DialgGetInput(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 			// Load ini
 			const wstring inifile = stdCombinePath(
 				stdGetParentDirectory(stdGetModuleFileName()),
-				stdGetFileNameWitoutExtension(stdGetModuleFileName()) + L".ini");
+				stdGetFileNameWithoutExtension(stdGetModuleFileName()) + L".ini");
 			try
 			{
 				Profile::CHashIni ini(Profile::ReadAll(inifile, true));
@@ -144,7 +144,7 @@ INT_PTR CALLBACK DialgGetInput(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 
 				const wstring inifile = stdCombinePath(
 					stdGetParentDirectory(stdGetModuleFileName()),
-					stdGetFileNameWitoutExtension(stdGetModuleFileName()) + L".ini");
+					stdGetFileNameWithoutExtension(stdGetModuleFileName()) + L".ini");
 
 				Profile::CHashIni ini(Profile::ReadAll(inifile));
 				Profile::WriteStringArray(
