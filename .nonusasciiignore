@@ -1,0 +1,6 @@
+*.rc
+*.ico
+*.png
+
+closeapp/resource.h
+closeapp/resource1.h
